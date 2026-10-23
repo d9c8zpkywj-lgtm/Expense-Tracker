@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add Expense</h1>
+
+<form method = "POST">
+    <label>Date
+        <input type = "date" name = "date" required>
+    </label>
+    <label>Category
+        <select name = "category" required>
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Entertainment</option>
+            <option>Utilities</option>
+            <option>Health</option>
+            <option>Bills</option>
+            <option>Other</option>
+        </select>
+    </label>
+
+    <label> Amount (₹)
+        <input type = "number" name = amount min = '0.1' step = '0.01' required>
+    </label>
+
+    <button type = "submit">Add Expense</button>
+</form>
+{% endblock %}
