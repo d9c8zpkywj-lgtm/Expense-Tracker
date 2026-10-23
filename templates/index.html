@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>My Expenses</h1>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+    </tr>
+    {% for e in expenses %}
+    <tr>
+        <td>{{e.date}}</td>
+        <td>{{e.category}}</td>
+        <td>{{e.amount}}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="2"><strong>Total</strong></td>
+        <td><strong>{{total}}</strong></td>
+    </tr>
+</table>
+{% endblock %}
+
