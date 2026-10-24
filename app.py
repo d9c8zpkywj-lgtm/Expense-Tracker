@@ -2,10 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-expenses = [
-    {"date": "2026-10-20", "category": "Food", "amount": 250},
-    {"date": "2026-10-21", "category": "Travel", "amount": 120},
-]
+expenses = []
 
 @app.route("/")
 def home():
