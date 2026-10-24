@@ -12,6 +12,11 @@
         <td>{{e.date}}</td>
         <td>{{e.category}}</td>
         <td>{{e.amount}}</td>
+        <td>
+        <form method="post" action="{{ url_for('delete', id=e['id']) }}">
+            <button type="submit">Delete</button>
+        </form>
+        </td>
     </tr>
     {% endfor %}
     <tr>
