@@ -7,14 +7,14 @@
         <th>Category</th>
         <th>Amount</th>
     </tr>
-    {% for e in expenses %}
-    <tr>
+    {%  for e in expenses %}
+    <tr >
         <td>{{e.date}}</td>
         <td>{{e.category}}</td>
         <td>{{e.amount}}</td>
         <td>
         <form method="post" action="{{ url_for('delete', id=e['id']) }}">
-            <button type="submit">Delete</button>
+            <button type="submit" class ="delete_button">Delete</button>
         </form>
         </td>
     </tr>
