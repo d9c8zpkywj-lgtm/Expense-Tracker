@@ -17,7 +17,7 @@ def home():
     return render_template("index.html", expenses=expenses, total=total)
 
 
-@app.route("/add", methods=["GET", "POST"])
+@app.route("/add", methods=["GET","POST"])
 def add():
     if request.method == "POST":
         date = request.form["date"]
@@ -33,6 +33,43 @@ def add():
         return redirect(url_for("home"))
     return render_template("add.html")
 
+
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+
+    db = get_db()
+
+    # Fetch the expense we want to edit
+    expense = db.execute(
+        "SELECT * FROM expenses WHERE id = ?", (id,)
+    ).fetchone()
+
+    if expense is None:
+        db.close()
+        return redirect(url_for("home"))
+
+    if request.method == "POST":
+
+        date = request.form["date"]
+        category = request.form["category"]
+        amount = float(request.form["amount"])
+
+        # Update the existing expense
+        db.execute(
+            """UPDATE expenses
+               SET date = ?, category = ?, amount = ?
+               WHERE id = ?""",
+            (date, category, amount, id)
+        )
+
+        db.commit()
+        db.close()
+
+        return redirect(url_for("home"))
+
+    db.close()
+
+    return render_template("edit.html", expense=expense)
 
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
